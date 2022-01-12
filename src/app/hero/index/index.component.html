@@ -1,0 +1,51 @@
+
+<style>
+
+    .bkg-red    {background-color: red;}
+    </style>
+
+<div>
+    <input type="text" placeholder="Nome" [(ngModel)]="nameSearch" />
+    <button type="button" (click)="getHeroes(0,nameSearch)" >Buscar</button>
+</div>
+
+<div style="width: 100%;">
+    <table style="width: 100%;">
+        <thead>
+            <tr>
+                <th colspan="2">Personagem</th>
+            <th>Séries</th>
+            <th>Eventos</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-template ngFor let-hero [ngForOf]="heroes" let-index="index">
+                <tr >
+                    <td >
+                        <img src="{{hero.thumbnail.path}}/portrait_small.jpg">
+                    </td>
+                    <td >{{hero.name}}</td>
+                    <td >
+                        <span *ngFor="let item of hero.series.items | slice:0:3;">{{item.name}}<br/></span>
+                    </td>
+                    <td  >
+                        <span *ngFor="let item of hero.events.items | slice:0:3;">{{item.name}}<br/></span>
+                    </td>
+                </tr>
+            </ng-template>
+        </tbody>
+    </table>
+</div>
+
+<div *ngIf="paginate.pages.length > 0">
+    <button type="button" (click)="getHeroes(paginate.currentPage -1)" [disabled]="paginate.currentPage == 0">Anterior</button>
+    <ul>
+        <li *ngFor="let i of paginate.pages; index as index">
+            <button type="button" (click)="getHeroes(i-1)" [ngClass]="{'bkg-red': i === paginate.currentPage+1}">{{i}}</button>
+        </li>
+    </ul>
+    <button type="button" (click)="getHeroes(paginate.currentPage +1)" [disabled]="paginate.currentPage == paginate.totalPages">Próximo</button>
+</div>
+
+
+
