@@ -1,1 +1,33 @@
-<p>details works!</p>
+<div class="details">
+
+    <div class="details-header">{{hero.name}}</div>
+
+    <div class="details-data">
+        <div class="details-ev">
+            
+            <div class="details-img">
+                <img src="{{hero.thumbnail.path}}/portrait_uncanny.jpg">
+            </div>
+            <div class="detail-card">
+                <div class="title-card">Series</div>
+                <div *ngFor="let item of hero.series.items">{{item.name}}</div>
+            </div>
+
+            <div class="detail-card">
+                <div class="title-card">Eventos</div>
+                <div *ngFor="let item of hero.events.items">{{item.name}}</div>
+            </div>
+
+            <div class="detail-card">
+                <div class="title-card">Comics</div>
+                <div *ngFor="let item of hero.comics.items">{{item.name}}</div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="op-page">
+    <button type="button" class="btn-common" (click)="backPage()">Voltar</button>
+</div>

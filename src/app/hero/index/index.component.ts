@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HeroService } from '../hero.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-index',
@@ -13,7 +14,7 @@ export class IndexComponent implements OnInit {
   heroes = [];
   paginate = <any>{ pages : []};
 
-  constructor(private service: HeroService) { }
+  constructor(private service: HeroService, private route: Router) { }
 
   ngOnInit() {
     this.getHeroes(0, null);
@@ -25,15 +26,14 @@ export class IndexComponent implements OnInit {
       this.heroes = this.model.data.results;
 
       this.paginate = this.calcPaginate(this.model.data.total, currentPage);
-      console.log(this.paginate)
 
-      this.nameSearch = "";
-      //Helper.hideLoader();
     }, error => {
       console.log('Erro ao carregar lista. ' + error.message, 'Erro!')
-      //this.toast.error('Erro ao carregar lista. ' + error.message, 'Erro!');
-      //Helper.hideLoader();
     });
+  }
+
+  details(id:number){
+    this.route.navigate(['/details', id]);
   }
 
   calcPaginate(totalItems: number, currentPage: number, pageSize: number = 10, maxPages: number = 6) {

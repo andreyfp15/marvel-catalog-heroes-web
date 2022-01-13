@@ -8,7 +8,7 @@ import { DetailsComponent } from './details/details.component';
 const routes: Routes = [
   { path: '', component: IndexComponent },
   { path: 'index', component: IndexComponent },
-  { path: 'details', component: DetailsComponent },
+  { path: 'details/:id', component: DetailsComponent },
 ];
 
 @NgModule({
