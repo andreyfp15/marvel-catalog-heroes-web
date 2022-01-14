@@ -1,17 +1,71 @@
+/*
+  1 - Coloquei apenas 1 @media (max-width) no index e 2 no details, poderia ajustar melhor mas segui apenas os exemplos da especificação.
+  2 - Paginação não estara 100% a especificação, pois bolei uma ideia de paginação antes de verificar a página reduzida na especificação... =/
+*/
+
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-body {
-  font-family: 'Roboto', sans-serif;
-  font-size: 16px;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: 0;
 }
 
-.input-group {
-  color: #d42026;
+html {
+  font-size: 62.5%;
+}
+
+html, body {
+  font-family: 'Roboto', sans-serif;
+  height: 100vh;
+  font-family: "Source Sans Pro";
+  text-rendering: optimizelegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container{
+  font-size: 1.6rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr 12px;
+  grid-template-areas: 
+    "header"
+    "main"
+    "footer";
+}
+
+header {
+  grid-area: header;
+  display: flex;
+  justify-content: space-between;
+  font-size: 2.6rem;
+  color: #D42026;
+  padding: 20px 42px 34px 42px;
+}
+
+.hr-1 {
+  display: block;
+  width: 5.4rem;
+  border: 0;
+  border-top: 0.4rem solid #D42026;
+  margin: 0 0;
+  padding: 0;
+}
+
+main {
+  grid-area: main;
+}
+
+footer {
+  background-color: #D42026;
+  grid-area: footer;
 }
 
 input[type=text] {
   display: block;
-  font: 15px/1 'Open Sans', sans-serif;
+  font: 15px/1 'Roboto', sans-serif;
   color: #333;
   width: 100%;
   height: 31px;
@@ -21,26 +75,60 @@ input[type=text] {
   box-sizing: border-box; 
 }
 
-.container {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 10vh 80vh 12px;
-  grid-template-areas: "h h" "m m" "f f";
-  padding-left: 42px;
-  padding-right: 42px;
-}
-
-header {
-  display: flex; 
-  justify-content: space-between;
-  font-size: 1.3em;
+.btn {
+  display:block;
+  border: 1px solid #d42026;
+  cursor: pointer;
   color: #d42026;
-  padding-top: 20px;
-  padding-bottom: 34px;
+  background-color: #fff;
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
 }
 
-main {
-  grid-area: m;
+@media (max-width: 425px) {
+  html {
+    font-size: 40%;
+  }
+
+  .hr-1 {
+    width: 8.6rem;
+  }
+  
+  header > .nav-author {
+    display: none;
+  }
+
+}
+@media (max-width: 360px) {
+
+  html {
+    font-size: 38%;
+  }
+
+  header {
+    padding: 12px 20px 12px 20px;
+  }
+
+  .hr-1 {
+    width: 8.6rem;
+  }
+
+  header > .nav-author {
+    display: none;
+  }
+
+}
+
+
+/*Index*/
+
+.input-group-name {
+  color: #d42026;
+  padding: 0px 4.2rem 0px 4.2rem;
+}
+
+.table-heroes{
+  padding: 3.4rem 4.2rem 0px 4.2rem;
 }
 
 table {
@@ -59,7 +147,6 @@ table thead th {
   font-weight: normal;
   color: #FFFFFF;
   padding: 10px 10px;
-
   border-right-width:10px;
   border-right-color:#FFFFFF;
   border-right-style:solid;
@@ -68,7 +155,6 @@ table tbody td {
   padding: 20px 5px 20px 15px;
   border-bottom: 1px solid #fadcdd;
 }
-
 tbody tr:hover {
   background-color: #fadcdd;
   cursor: pointer;
@@ -84,66 +170,24 @@ tbody tr:hover {
   width:100%;
 }
 
-.block-heroes {
-  padding-top: 34px;
-}
-
-@media (max-width: 600px) {
-
-  .container {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 10vh 80vh 12px;
-    grid-template-areas: "h h" "m m" "f f";
-    padding-left: 0px;
-    padding-right: 0px;
-  }
-
-  header {
-    font-size: 16px;
-  }
-
-  header .header-author {
-    display: none;
-  }
-
-  .series {
-    display: none;
-  }
-
-  .events {
-    display: none;
-  }
-
-  .pagination {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    width: 100%;
-    align-items: center;
-    height: 120px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    flex-wrap: nowrap;
-  }
-}
-
 .pagination {
   display: flex;
   justify-content: center;
-  align-content: center;
-  width: 100%;
+  width: 1wh;
+  height: 8.0rem;
   align-items: center;
-  height: 60px;
+  align-content: center;
 }
 
-.pagination ul > li {
-  display: inline-block;
-  padding-right: 10px;
+.pagination-buttons{
+  width: 40.0rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
 }
 
-.btn {
-  display:block;
+.btn-pag {
   height: 32px;
   width: 32px;
   border-radius: 50%;
@@ -151,15 +195,6 @@ tbody tr:hover {
   cursor: pointer;
   color: #d42026;
   background-color: #fff;
-}
-
-.btn-common {
-  display:block;
-  border: 1px solid #d42026;
-  cursor: pointer;
-  color: #d42026;
-  background-color: #fff;
-  padding: 5px 10px 5px 10px;
 }
 
 .btn-active {
@@ -191,6 +226,81 @@ tbody tr:hover {
 }
 
 
+@media (max-width: 360px) {
+
+  .input-group-name {
+    color: #d42026;
+    padding: 0px 20px 0px 20px;
+    font-size: 14px;
+  }
+  
+  .table-heroes{
+    padding: 12px 0 0 0;
+  }
+
+  table thead th {
+    border: none;
+    font-size: 14px;
+    padding-left: 19.0rem;
+  }
+
+  table tbody td {
+    padding: 18px 5px 18px 15px;
+    font-size: 2.6rem;
+    border-bottom: 1px solid #d42026;
+  }
+
+  .person {
+    visibility: hidden;
+  }
+  .person::before{
+    content: 'Nome';
+    visibility: visible;
+  }
+
+  .series {
+    display: none;
+  }
+
+  .events {
+    display: none;
+  }
+
+  .pagination {
+    width: 100%;
+    margin-top: 18px;
+    margin-bottom: 24px;
+  }
+  
+  .pagination-buttons{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  
+  .btn-pag {
+    height: 32px;
+    width: 32px;
+  }
+
+}
+
+
+
+
+
+
+
+/*Details*/
+
+.details {
+  padding-left: 42px;
+  padding-right: 42px;
+}
 
 .details-header{
   grid-column-start: 1;
@@ -206,7 +316,6 @@ tbody tr:hover {
 }
 
 .details-img{
-  padding: 10px;
   min-width: 300px;
 }
 
@@ -223,13 +332,43 @@ tbody tr:hover {
   font-weight: bold;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 425px) {
+  .details {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 
   .detail-card {
-    min-width: 100px;
+    width: 1vh;
   }
+
+  .img-responsive {
+    width: 93%;
+    max-width: 400px;
+    height: auto;
+  }
+
+}
+@media (max-width: 360px) {
+
+  .details {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .detail-card {
+    width: 1vh;
+  }
+
+  .img-responsive {
+    width: 93%;
+    max-width: 400px;
+    height: auto;
+  }
+
 }
 
 .op-page {
-  padding-bottom: 20px;;  
+  padding-top: 20px ;
+  padding-bottom: 20px;
 }

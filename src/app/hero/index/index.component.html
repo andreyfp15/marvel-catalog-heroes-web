@@ -1,51 +1,60 @@
-<div class="input-group">
-    <label>Nome do Personagem</label>
-    <input type="text" [(ngModel)]="nameSearch" (blur)="getHeroes(0,nameSearch)" />
-</div>
+
 
 <div class="block-heroes">
-    <table>
-        <thead>
-            <tr>
-                <th colspan="2">Personagem</th>
-                <th class="series">Séries</th>
-                <th class="events">Eventos</th>
-            </tr>
-        </thead>
-        <tbody>
-            <ng-template ngFor let-hero [ngForOf]="heroes" let-index="index">
-                <tr (click)="details(hero.id)">
-                    <td>
-                        <img src="{{hero.thumbnail.path}}/portrait_medium.jpg" class="circular-image">
-                    </td>
-                    <td >{{hero.name}}</td>
-                    <td class="series">
-                        <span *ngFor="let item of hero.series.items | slice:0:3;">{{item.name}}<br/></span>
-                    </td>
-                    <td class="events">
-                        <span *ngFor="let item of hero.events.items | slice:0:3;">{{item.name}}<br/></span>
-                    </td>
+
+    <div class="input-group-name">
+        <label>Nome do Personagem</label>
+        <!--Deixei um evento de blur para pesquisar os nomes, pois não sabia se a pesquisa deveria ser feita apenas nos resultados de tela ou deveria buscar um nome específico na API sendo chamado por um botão 'Buscar' -->
+        <input type="text" [(ngModel)]="nameSearch" (blur)="getHeroes(0,nameSearch)" />
+    </div>
+
+    <div class="table-heroes">
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2"><span class="person">Personagem</span></th>
+                    <th class="series">Séries</th>
+                    <th class="events">Eventos</th>
                 </tr>
-            </ng-template>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <ng-template ngFor let-hero [ngForOf]="heroes" let-index="index">
+                    <tr (click)="details(hero.id)">
+                        <td>
+                            <img src="{{hero.thumbnail.path}}/portrait_medium.jpg" class="circular-image">
+                        </td>
+                        <td >{{hero.name}}</td>
+                        <td class="series">
+                            <span *ngFor="let item of hero.series.items | slice:0:3;">{{item.name}}<br/></span>
+                        </td>
+                        <td class="events">
+                            <span *ngFor="let item of hero.events.items | slice:0:3;">{{item.name}}<br/></span>
+                        </td>
+                    </tr>
+                </ng-template>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="pagination" *ngIf="paginate.pages.length > 0">
+    
+        <div class="pagination-buttons">
+            <div>
+                <button type="button" class="btn-arrow" (click)="getHeroes(paginate.currentPage -1)" [disabled]="paginate.currentPage == 0"><i class="arrow left"></i></button>
+            </div>
+            <div *ngFor="let i of paginate.pages; index as index">
+                <button type="button" class="btn-pag" (click)="getHeroes(i-1)" [ngClass]="{'btn-active': i === paginate.currentPage+1}">{{i}}</button>
+            </div>
+            <div>
+                <button type="button" class="btn-arrow" (click)="getHeroes(paginate.currentPage +1)" [disabled]="paginate.currentPage == paginate.totalPages"><i class="arrow right"></i></button>
+            </div>
+        </div>
+      
+    </div>
+
 </div>
 
-<div class="pagination" *ngIf="paginate.pages.length > 0">
-    
-    <ul>
-        <li>
-            <button type="button" class="btn-arrow" (click)="getHeroes(paginate.currentPage -1)" [disabled]="paginate.currentPage == 0"><i class="arrow left"></i></button>
-        </li>
-        <li *ngFor="let i of paginate.pages; index as index">
-            <button type="button" class="btn" (click)="getHeroes(i-1)" [ngClass]="{'btn-active': i === paginate.currentPage+1}">{{i}}</button>
-        </li>
-        <li>
-            <button type="button" class="btn-arrow" (click)="getHeroes(paginate.currentPage +1)" [disabled]="paginate.currentPage == paginate.totalPages"><i class="arrow right"></i></button>
-        </li>
-    </ul>
-  
-</div>
+
 
 
 

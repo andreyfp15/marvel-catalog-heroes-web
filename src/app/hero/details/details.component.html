@@ -5,8 +5,11 @@
     <div class="details-data">
         <div class="details-ev">
             
-            <div class="details-img">
-                <img src="{{hero.thumbnail.path}}/portrait_uncanny.jpg">
+
+            <div class="detail-card">
+                <div class="details-img">
+                    <img class="img-responsive" src="{{hero.thumbnail.path}}/portrait_uncanny.jpg">
+                </div>
             </div>
             <div class="detail-card">
                 <div class="title-card">Series</div>
@@ -26,8 +29,10 @@
         </div>
     </div>
 
+    <div class="op-page">
+        <button type="button" class="btn" (click)="backPage()">Voltar</button>
+    </div>
+
 </div>
 
-<div class="op-page">
-    <button type="button" class="btn-common" (click)="backPage()">Voltar</button>
-</div>
+
